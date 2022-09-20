@@ -5,8 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_LAB03"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="ArmyEditor" Height="650" Width="800">
+    <Window.Resources>
+        <local:ValueToColorConverter x:Key="colorConverter" />
+    </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        
+        <ListBox Grid.Column="0" x:Name="lb_all" ItemsSource="{Binding Troopers}">
+            <!--<Label Content="{Binding Name}" ContentStringFormat="Név: {0}"/>-->
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1" BorderBrush="Black">
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="{Binding Name}" ContentStringFormat=" {0}"></Label>
+                            <StackPanel Orientation="Horizontal">
+                                <ProgressBar Value="{Binding Power}" Height="10" Width="70" Margin="10" Minimum="0" Maximum="10"  Foreground="{Binding Power, Converter={StaticResource colorConverter}}"/>
+                                <ProgressBar Value="{Binding Vitality}" Height="10" Width="70" Margin="10" Minimum="0" Maximum="10" Foreground="{Binding Vitality, Converter={StaticResource colorConverter}}"/>
+                                <ProgressBar Value="{Binding Cost}" Height="10" Width="70" Margin="10" Minimum="0" Maximum="10"  Foreground="{Binding Cost, Converter={StaticResource colorConverter}}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Column="1">
+            <Label x:Name="l_money" Padding="5" Content="{Binding Value, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="Money: {0}$" Margin="20,20,20,10" HorizontalContentAlignment="Center"/>
+            <Button x:Name="bt_add" Content="Add To Army" Padding="10" Margin="10,10,10,10" HorizontalContentAlignment="Center" Click="bt_add_Click"/>
+            <Button x:Name="bt_remove" Content="Remove From Army" Padding="10" Margin="10,10,10,10" HorizontalContentAlignment="Center" Click="bt_remove_Click"/>
+            <Button x:Name="bt_edit" Content="Edit trooper" Padding="10" Margin="10,10,10,10" HorizontalContentAlignment="Center" Click="bt_edit_Click"/>
+
+        </StackPanel>
+        
+        
+        <ListBox Grid.Column="2" x:Name="lb_army" ItemsSource="{Binding Army}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Name}" ContentStringFormat=" {0}"></Label>
+                            <Label Content="{Binding Power}" ContentStringFormat="Power: {0}"></Label>
+                            <Label Content="{Binding Vitality}" ContentStringFormat="Vitality: {0}"></Label>
+                            <Label Content="{Binding Cost}" ContentStringFormat="Cost: {0}"></Label>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </Grid>
 </Window>
