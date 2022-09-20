@@ -9,20 +9,19 @@
     <Window.Resources>
         <local:ValueToColorConverter x:Key="colorConverter" />
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="Grid_Main">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        
+
         <ListBox Grid.Column="0" x:Name="lb_all" ItemsSource="{Binding Troopers}">
-            <!--<Label Content="{Binding Name}" ContentStringFormat="Név: {0}"/>-->
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderThickness="1" BorderBrush="Black">
+                    <Border BorderThickness="1" BorderBrush="Black" >
                         <StackPanel Orientation="Vertical">
-                            <Label Content="{Binding Name}" ContentStringFormat=" {0}"></Label>
+                            <Label  Content="{Binding Name}" ContentStringFormat=" {0}" HorizontalContentAlignment="Center" FontFamily="Franklin Gothic Medium" FontSize="24"   Background="DeepSkyBlue"></Label>
                             <StackPanel Orientation="Horizontal">
                                 <ProgressBar Value="{Binding Power}" Height="10" Width="70" Margin="10" Minimum="0" Maximum="10"  Foreground="{Binding Power, Converter={StaticResource colorConverter}}"/>
                                 <ProgressBar Value="{Binding Vitality}" Height="10" Width="70" Margin="10" Minimum="0" Maximum="10" Foreground="{Binding Vitality, Converter={StaticResource colorConverter}}"/>
@@ -39,6 +38,7 @@
             <Button x:Name="bt_add" Content="Add To Army" Padding="10" Margin="10,10,10,10" HorizontalContentAlignment="Center" Click="bt_add_Click"/>
             <Button x:Name="bt_remove" Content="Remove From Army" Padding="10" Margin="10,10,10,10" HorizontalContentAlignment="Center" Click="bt_remove_Click"/>
             <Button x:Name="bt_edit" Content="Edit trooper" Padding="10" Margin="10,10,10,10" HorizontalContentAlignment="Center" Click="bt_edit_Click"/>
+            <Button x:Name="bt_DarkMode" Content="Dark Mode" Padding="10" Margin="10,10,10,10" HorizontalContentAlignment="Center" Click="bt_DarkMode_Click"/>
 
         </StackPanel>
         
@@ -46,7 +46,7 @@
         <ListBox Grid.Column="2" x:Name="lb_army" ItemsSource="{Binding Army}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border>
+                    <Border BorderThickness="1">
                         <StackPanel Orientation="Horizontal">
                             <Label Content="{Binding Name}" ContentStringFormat=" {0}"></Label>
                             <Label Content="{Binding Power}" ContentStringFormat="Power: {0}"></Label>

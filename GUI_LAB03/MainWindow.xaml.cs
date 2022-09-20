@@ -25,9 +25,12 @@ namespace GUI_LAB03
 
         MainWindowViewModel vm;
 
+        public bool darkModeToggle;
         public MainWindow()
         {
             InitializeComponent();
+
+            darkModeToggle = false;
 
             vm = new MainWindowViewModel();
 
@@ -56,5 +59,24 @@ namespace GUI_LAB03
 
             }
         }
-    }
+
+		private void bt_DarkMode_Click(object sender, RoutedEventArgs e)
+		{
+			if (!darkModeToggle)
+			{
+                Grid_Main.Background = new SolidColorBrush(Color.FromRgb(40, 43, 48));
+                lb_all.Background= new SolidColorBrush(Color.FromRgb(54, 57, 62));
+                lb_army.Background= new SolidColorBrush(Color.FromRgb(54, 57, 62)); 
+                darkModeToggle =true;
+			}
+			else
+			{
+                Grid_Main.Background = Brushes.White;
+                lb_all.Background = Brushes.White;
+                lb_army.Background = Brushes.White;
+                darkModeToggle = false;
+
+            }
+		}
+	}
 }
