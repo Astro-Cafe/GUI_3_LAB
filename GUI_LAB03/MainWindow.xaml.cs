@@ -39,7 +39,13 @@ namespace GUI_LAB03
 
         private void bt_add_Click(object sender, RoutedEventArgs e)
         {
-            vm.Army.Add(lb_all.SelectedItem as Trooper);
+
+            Trooper nt = new Trooper();
+            nt.Name = (lb_all.SelectedItem as Trooper).Name;
+            nt.Cost = (lb_all.SelectedItem as Trooper).Cost;
+            nt.Vitality = (lb_all.SelectedItem as Trooper).Vitality;
+            nt.Power = (lb_all.SelectedItem as Trooper).Power;
+            vm.Army.Add(nt);
             l_money.Content = vm.Army.Sum(t => t.value);
         }
 
