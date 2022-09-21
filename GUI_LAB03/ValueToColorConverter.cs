@@ -12,11 +12,11 @@ namespace GUI_LAB03
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((int)value < 4)
+            if ((int)value <= 3)
             {
                 return "Red";
             }
-            else if ((int)value > 5 && (int)value < 7)
+            else if ((int)value >= 4 && (int)value <= 7)
             {
                 return "Yellow";
             }
